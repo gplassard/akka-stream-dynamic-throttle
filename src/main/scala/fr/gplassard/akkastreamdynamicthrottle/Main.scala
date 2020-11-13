@@ -39,6 +39,11 @@ object Main extends App {
     .log("tokens", t => s"Throttle actuel ${t}/s")
     .throttle(1, 1 second)
 
+
+  //20 pendant les 20 premières secondes
+  //60 pendant les 20 secondes suivantes
+  //20 derniers en 4 secondes
+  //Completed in 45115ms -> on est plutôt bons !
   Source(1 to 100)
     .via(TokenThrottle(tokens)(_ => 1))
     //.log("items")
